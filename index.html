@@ -2509,3 +2509,557 @@ mso-font-kerning:0pt;mso-ansi-language:EN-US'>&lt;/html&gt;</span></p>
 </body>
 
 </html>
+:root{
+--bg:#0b1220;
+--card:#121c33;
+--muted:#8ea0c7;
+--text:#eaf0ff;
+--accent:#4cc2ff;
+--accent2:#a6ffcb;
+--border:rgba(255,255,255,.08);
+}
+
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+background: linear-gradient(180deg, #060b16, var(--bg));
+color:var(--text);
+}
+
+.header{
+position: sticky; top:0;
+display:flex; gap:16px;
+align-items:center; justify-content:space-between;
+padding:14px 18px;
+background: rgba(6,11,22,.8);
+backdrop-filter: blur(10px);
+border-bottom:1px solid var(--border);
+z-index:10;
+}
+
+.brand{display:flex; gap:12px; align-items:center}
+.logo{
+width:42px; height:42px;
+display:grid; place-items:center;
+border-radius:12px;
+background: rgba(76,194,255,.15);
+border:1px solid var(--border);
+font-size:20px;
+}
+
+.brand h1{margin:0; font-size:18px}
+.brand p{margin:0; color:var(--muted); font-size:12px}
+
+.nav{display:flex; flex-wrap:wrap; gap:10px}
+.nav a{
+color:var(--text); text-decoration:none;
+padding:8px 10px;
+border-radius:10px;
+border:1px solid transparent;
+}
+.nav a:hover{border-color:var(--border); background: rgba(255,255,255,.04);}
+
+.section{padding:26px 18px; max-width:1200px; margin:0 auto;}
+.hero{padding-top:18px}
+.hero-card{
+background: linear-gradient(135deg, rgba(76,194,255,.16), rgba(166,255,203,.10));
+border:1px solid var(--border);
+border-radius:16px;
+padding:18px;
+}
+.hero-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px}
+
+.panel{
+background: rgba(18,28,51,.8);
+border:1px solid var(--border);
+border-radius:16px;
+padding:14px;
+}
+
+.grid{
+display:grid;
+grid-template-columns: repeat(3, 1fr);
+gap:12px;
+}
+.card{
+background: rgba(18,28,51,.8);
+border:1px solid var(--border);
+border-radius:16px;
+padding:14px;
+}
+.card h3{margin:0 0 6px 0}
+.muted{color:var(--muted)}
+.list{display:flex; flex-direction:column; gap:10px}
+.item{
+padding:10px;
+border:1px solid var(--border);
+border-radius:12px;
+background: rgba(255,255,255,.03);
+cursor:pointer;
+}
+.item:hover{background: rgba(255,255,255,.06)}
+.badge{
+display:inline-block;
+font-size:12px;
+padding:4px 8px;
+border-radius:999px;
+border:1px solid var(--border);
+color:var(--muted);
+margin-left:8px;
+}
+
+.btn{
+display:inline-block;
+padding:10px 14px;
+border-radius:12px;
+border:1px solid transparent;
+background: rgba(76,194,255,.18);
+color:var(--text);
+cursor:pointer;
+text-decoration:none;
+}
+.btn:hover{border-color:var(--border)}
+.btn.secondary{background: rgba(166,255,203,.12)}
+
+.hero-actions{display:flex; gap:10px; margin-top:12px}
+
+.two-col{display:grid; grid-template-columns: 1fr 2fr; gap:12px}
+
+.tabs{display:flex; gap:8px; margin:10px 0}
+.tab{
+padding:8px 12px;
+border-radius:12px;
+background: rgba(255,255,255,.03);
+border:1px solid var(--border);
+color:var(--text);
+cursor:pointer;
+}
+.tab.active{background: rgba(76,194,255,.18)}
+
+.hidden{display:none}
+
+table{width:100%; border-collapse:collapse; overflow:hidden}
+th,td{
+padding:10px;
+border-bottom:1px solid var(--border);
+text-align:left;
+font-size:14px;
+}
+th{color:var(--muted); font-weight:600}
+
+.filters{display:flex; gap:10px; margin-bottom:10px}
+select, input{
+width:100%;
+padding:10px;
+border-radius:12px;
+border:1px solid var(--border);
+background: rgba(255,255,255,.03);
+color:var(--text);
+}
+
+.upload-row{display:grid; grid-template-columns: 1fr 180px 1fr 140px; gap:10px; align-items:center}
+
+.gallery .card img, .gallery .card video{
+width:100%;
+border-radius:12px;
+border:1px solid var(--border);
+}
+.footer{
+display:flex; justify-content:space-between; align-items:center;
+padding:16px 18px;
+border-top:1px solid var(--border);
+background: rgba(6,11,22,.9);
+}
+.footer-links{display:flex; gap:14px}
+.footer a{color:var(--accent); text-decoration:none}
+.footer a:hover{text-decoration:underline}
+
+.modal{
+position:fixed; inset:0;
+background: rgba(0,0,0,.6);
+display:grid; place-items:center;
+z-index:99;
+}
+.modal-content{
+width:min(760px, 94vw);
+background: rgba(18,28,51,.95);
+border:1px solid var(--border);
+border-radius:16px;
+padding:16px;
+position:relative;
+}
+.modal-close{
+position:absolute; top:10px; right:10px;
+background: rgba(255,255,255,.06);
+border:1px solid var(--border);
+border-radius:10px;
+color:var(--text);
+padding:6px 10px;
+cursor:pointer;
+}
+
+@media (max-width: 900px){
+.grid{grid-template-columns:1fr 1fr}
+.two-col{grid-template-columns:1fr}
+.hero-grid{grid-template-columns:1fr}
+.upload-row{grid-template-columns:1fr}
+}
+// ====== CONFIG LINKS (edita esto) ======
+const WHATSAPP_NUMBER = "1809XXXXXXX"; // Ej: 18091234567
+const INSTAGRAM_URL = "https://instagram.com/tu_liga";
+
+// ====== DATA DEMO (rellena nombres reales) ======
+const data = {
+categories: [
+{ id:"cat1", name:"Categoría 5-6", teams:["t1","t2"] },
+{ id:"cat2", name:"Categoría 7-8", teams:["t3","t4"] },
+{ id:"cat3", name:"Categoría 9-10", teams:["t5","t6"] },
+{ id:"cat4", name:"Categoría 11-12", teams:["t7","t8"] },
+{ id:"cat5", name:"Categoría 13-14", teams:["t9","t10"] },
+{ id:"cat6", name:"Categoría 15-16", teams:["t11","t12"] },
+],
+teams: {
+t1:{ id:"t1", name:"Tigres", category:"cat1", logo:"🐯" , roster:["p1","p2","p3"], stats:{JJ:4,G:3,P:1,AVG:.285,ERA:2.10}},
+t2:{ id:"t2", name:"Águilas", category:"cat1", logo:"🦅" , roster:["p4","p5","p6"], stats:{JJ:4,G:1,P:3,AVG:.240,ERA:3.90}},
+t3:{ id:"t3", name:"Leones", category:"cat2", logo:"🦁" , roster:["p7","p8"], stats:{JJ:2,G:2,P:0,AVG:.310,ERA:1.80}},
+t4:{ id:"t4", name:"Toros", category:"cat2", logo:"🐂" , roster:["p9","p10"], stats:{JJ:2,G:0,P:2,AVG:.190,ERA:4.60}},
+t5:{ id:"t5", name:"Estrellas", category:"cat3", logo:"⭐", roster:["p11"], stats:{JJ:0,G:0,P:0,AVG:.000,ERA:0.00}},
+t6:{ id:"t6", name:"Gigantes", category:"cat3", logo:"🧢", roster:["p12"], stats:{JJ:0,G:0,P:0,AVG:.000,ERA:0.00}},
+t7:{ id:"t7", name:"Piratas", category:"cat4", logo:"🏴‍☠️", roster:["p13"], stats:{JJ:0,G:0,P:0,AVG:.000,ERA:0.00}},
+t8:{ id:"t8", name:"Rayos", category:"cat4", logo:"⚡", roster:["p14"], stats:{JJ:0,G:0,P:0,AVG:.000,ERA:0.00}},
+t9:{ id:"t9", name:"Halcones", category:"cat5", logo:"🦅", roster:["p15"], stats:{JJ:0,G:0,P:0,AVG:.000,ERA:0.00}},
+t10:{ id:"t10", name:"Delfines", category:"cat5", logo:"🐬", roster:["p16"], stats:{JJ:0,G:0,P:0,AVG:.000,ERA:0.00}},
+t11:{ id:"t11", name:"Panteras", category:"cat6", logo:"🐆", roster:["p17"], stats:{JJ:0,G:0,P:0,AVG:.000,ERA:0.00}},
+t12:{ id:"t12", name:"Cóndores", category:"cat6", logo:"🦅", roster:["p18"], stats:{JJ:0,G:0,P:0,AVG:.000,ERA:0.00}},
+},
+players: {
+p1:{ id:"p1", name:"Juan Pérez", number:7, pos:"SS", bats:"D", throws:"D", photo:"", batting:{AVG:.320,OBP:.400,SLG:.450,HR:1,RBI:6}, pitching:{IP:2.0,ERA:1.50,SO:4}},
+p2:{ id:"p2", name:"Luis García", number:10, pos:"P", bats:"D", throws:"D", photo:"", batting:{AVG:.250,OBP:.310,SLG:.300,HR:0,RBI:2}, pitching:{IP:6.0,ERA:2.00,SO:9}},
+p3:{ id:"p3", name:"Carlos Díaz", number:4, pos:"CF", bats:"Z", throws:"D", photo:"", batting:{AVG:.280,OBP:.330,SLG:.410,HR:0,RBI:3}, pitching:{IP:0.0,ERA:0.00,SO:0}},
+p4:{ id:"p4", name:"Mateo Reyes", number:2, pos:"2B", bats:"D", throws:"D", photo:"", batting:{AVG:.210,OBP:.260,SLG:.290,HR:0,RBI:1}, pitching:{IP:0.0,ERA:0.00,SO:0}},
+p5:{ id:"p5", name:"Andrés Núñez", number:11, pos:"P", bats:"D", throws:"D", photo:"", batting:{AVG:.180,OBP:.240,SLG:.220,HR:0,RBI:1}, pitching:{IP:5.0,ERA:4.20,SO:6}},
+p6:{ id:"p6", name:"José Mena", number:9, pos:"RF", bats:"Z", throws:"Z", photo:"", batting:{AVG:.260,OBP:.320,SLG:.380,HR:0,RBI:2}, pitching:{IP:0.0,ERA:0.00,SO:0}},
+// agrega el resto...
+},
+schedule: [
+{ id:"g1", date:"2026-01-10", category:"cat1", home:"t1", away:"t2", homeScore:6, awayScore:3, status:"Final" },
+{ id:"g2", date:"2026-01-12", category:"cat2", home:"t3", away:"t4", homeScore:null, awayScore:null, status:"Programado" },
+],
+gallery: [
+{ id:"m1", type:"photo", title:"Día inaugural", url:"https://picsum.photos/600/400?random=7" },
+]
+};
+
+// ====== Helpers UI ======
+const el = (id)=>document.getElementById(id);
+
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+function setLinks(){
+const wa = `https://wa.me/${WHATSAPP_NUMBER}`;
+el("whatsappLink").href = wa;
+el("footerWhatsapp").href = wa;
+
+el("instagramLink").href = INSTAGRAM_URL;
+el("footerInstagram").href = INSTAGRAM_URL;
+}
+
+function renderHome(){
+const upcoming = data.schedule.filter(g=>g.status!=="Final").slice(0,4);
+const recent = data.schedule.filter(g=>g.status==="Final").slice(0,4);
+
+el("upcomingGames").innerHTML = upcoming.map(g=>{
+return `<div class="item">
+<strong>${g.date}</strong> · ${teamName(g.away)} vs ${teamName(g.home)}
+<span class="badge">${catName(g.category)}</span>
+</div>`;
+}).join("") || `<div class="muted">No hay juegos programados aún.</div>`;
+
+el("recentResults").innerHTML = recent.map(g=>{
+return `<div class="item">
+<strong>${teamName(g.away)} ${g.awayScore}</strong> - <strong>${teamName(g.home)} ${g.homeScore}</strong>
+<span class="badge">${g.date}</span>
+</div>`;
+}).join("") || `<div class="muted">No hay resultados todavía.</div>`;
+}
+
+function renderCategories(){
+el("categoriesGrid").innerHTML = data.categories.map(c=>{
+const teamCards = c.teams.map(tid=>{
+const t = data.teams[tid];
+return `<div class="item" onclick="selectTeam('${tid}')">${t.logo} <strong>${t.name}</strong></div>`;
+}).join("");
+
+return `<div class="card">
+<h3>${c.name}</h3>
+<p class="muted">2 equipos</p>
+<div class="list">${teamCards}</div>
+</div>`;
+}).join("");
+}
+
+function renderTeamsList(){
+const teams = Object.values(data.teams);
+el("teamsList").innerHTML = teams.map(t=>{
+return `<div class="item" onclick="selectTeam('${t.id}')">
+${t.logo} <strong>${t.name}</strong> <span class="badge">${catName(t.category)}</span>
+</div>`;
+}).join("");
+}
+
+let currentTeamId = null;
+
+function selectTeam(teamId){
+currentTeamId = teamId;
+const team = data.teams[teamId];
+el("teamTitle").textContent = `${team.logo} ${team.name} · ${catName(team.category)}`;
+
+// roster
+const rosterRows = team.roster.map(pid=>{
+const p = data.players[pid];
+if(!p) return "";
+return `<tr>
+<td>#${p.number}</td>
+<td><a href="#" onclick="openPlayer('${p.id}'); return false;">${p.name}</a></td>
+<td>${p.pos}</td>
+<td>${p.bats}/${p.throws}</td>
+<td>${p.batting.AVG.toFixed(3)}</td>
+</tr>`;
+}).join("");
+
+el("teamRoster").innerHTML = `
+<table>
+<thead><tr><th>No.</th><th>Jugador</th><th>Pos</th><th>B/T</th><th>AVG</th></tr></thead>
+<tbody>${rosterRows || `<tr><td colspan="5" class="muted">Sin roster cargado.</td></tr>`}</tbody>
+</table>
+`;
+
+// team stats
+const s = team.stats;
+el("teamStats").innerHTML = `
+<table>
+<thead><tr><th>JJ</th><th>G</th><th>P</th><th>AVG</th><th>ERA</th></tr></thead>
+<tbody><tr><td>${s.JJ}</td><td>${s.G}</td><td>${s.P}</td><td>${s.AVG}</td><td>${s.ERA}</td></tr></tbody>
+</table>
+`;
+
+// leaders (simple)
+const players = team.roster.map(pid=>data.players[pid]).filter(Boolean);
+const topAVG = [...players].sort((a,b)=>b.batting.AVG - a.batting.AVG).slice(0,3);
+el("teamLeaders").innerHTML = `
+<div class="list">
+${topAVG.map(p=>`<div class="item" onclick="openPlayer('${p.id}')"><strong>${p.name}</strong> · AVG ${p.batting.AVG.toFixed(3)}</div>`).join("") || `<div class="muted">Sin líderes aún.</div>`}
+</div>
+`;
+
+// ensure roster tab active
+showTeamTab("roster");
+}
+
+function showTeamTab(tab){
+const tabs = document.querySelectorAll(".tab");
+tabs.forEach(t=>t.classList.remove("active"));
+
+const map = { roster:"teamRoster", teamStats:"teamStats", leaders:"teamLeaders" };
+Object.values(map).forEach(id=>el(id).classList.add("hidden"));
+
+if(tab==="roster") tabs[0].classList.add("active");
+if(tab==="teamStats") tabs[1].classList.add("active");
+if(tab==="leaders") tabs[2].classList.add("active");
+
+el(map[tab]).classList.remove("hidden");
+}
+
+function renderFilters(){
+el("categoryFilter").innerHTML = `<option value="all">Todas las categorías</option>` +
+data.categories.map(c=>`<option value="${c.id}">${c.name}</option>`).join("");
+
+const teams = Object.values(data.teams);
+el("teamFilter").innerHTML = `<option value="all">Todos los equipos</option>` +
+teams.map(t=>`<option value="${t.id}">${t.name}</option>`).join("");
+}
+
+function renderSchedule(){
+const cat = el("categoryFilter").value;
+const team = el("teamFilter").value;
+
+let games = [...data.schedule];
+if(cat!=="all") games = games.filter(g=>g.category===cat);
+if(team!=="all") games = games.filter(g=>g.home===team || g.away===team);
+
+games.sort((a,b)=>a.date.localeCompare(b.date));
+
+const rows = games.map(g=>{
+const score = g.status==="Final"
+? `${g.awayScore} - ${g.homeScore}`
+: "—";
+return `<tr>
+<td>${g.date}</td>
+<td>${catName(g.category)}</td>
+<td>${teamName(g.away)} vs ${teamName(g.home)}</td>
+<td>${g.status}</td>
+<td>${score}</td>
+</tr>`;
+}).join("");
+
+el("scheduleTable").innerHTML = `
+<table>
+<thead><tr><th>Fecha</th><th>Categoría</th><th>Juego</th><th>Estado</th><th>Marcador</th></tr></thead>
+<tbody>${rows || `<tr><td colspan="5" class="muted">No hay juegos para ese filtro.</td></tr>`}</tbody>
+</table>
+`;
+}
+
+function computeLeaders(){
+const players = Object.values(data.players);
+
+// batting leaders by AVG
+const batting = [...players]
+.filter(p=>p.batting && typeof p.batting.AVG === "number")
+.sort((a,b)=>b.batting.AVG - a.batting.AVG)
+.slice(0,8);
+
+el("battingLeaders").innerHTML = `
+<table>
+<thead><tr><th>Jugador</th><th>Equipo</th><th>AVG</th><th>HR</th><th>RBI</th></tr></thead>
+<tbody>
+${batting.map(p=>`
+<tr>
+<td><a href="#" onclick="openPlayer('${p.id}'); return false;">${p.name}</a></td>
+<td>${playerTeamName(p.id)}</td>
+<td>${p.batting.AVG.toFixed(3)}</td>
+<td>${p.batting.HR}</td>
+<td>${p.batting.RBI}</td>
+</tr>`).join("")}
+</tbody>
+</table>
+`;
+
+// pitching leaders by ERA (lower better)
+const pitching = [...players]
+.filter(p=>p.pitching && typeof p.pitching.ERA === "number" && p.pitching.IP > 0)
+.sort((a,b)=>a.pitching.ERA - b.pitching.ERA)
+.slice(0,8);
+
+el("pitchingLeaders").innerHTML = `
+<table>
+<thead><tr><th>Jugador</th><th>Equipo</th><th>IP</th><th>ERA</th><th>SO</th></tr></thead>
+<tbody>
+${pitching.map(p=>`
+<tr>
+<td><a href="#" onclick="openPlayer('${p.id}'); return false;">${p.name}</a></td>
+<td>${playerTeamName(p.id)}</td>
+<td>${p.pitching.IP.toFixed(1)}</td>
+<td>${p.pitching.ERA.toFixed(2)}</td>
+<td>${p.pitching.SO}</td>
+</tr>`).join("") || `<tr><td colspan="5" class="muted">Sin stats de pitcheo aún.</td></tr>`}
+</tbody>
+</table>
+`;
+}
+
+function renderGallery(){
+el("galleryGrid").innerHTML = data.gallery.map(m=>{
+if(m.type==="photo"){
+return `<div class="card">
+<h3>${m.title}</h3>
+<img src="${m.url}" alt="${m.title}"/>
+</div>`;
+}
+return `<div class="card">
+<h3>${m.title}</h3>
+<video controls src="${m.url}"></video>
+</div>`;
+}).join("");
+}
+
+function addMedia(){
+const title = el("mediaTitle").value.trim();
+const type = el("mediaType").value;
+const url = el("mediaUrl").value.trim();
+
+if(!title || !url){
+alert("Pon un título y una URL, porfa 🙂");
+return;
+}
+data.gallery.unshift({ id:`m${Date.now()}`, type, title, url });
+el("mediaTitle").value = "";
+el("mediaUrl").value = "";
+renderGallery();
+}
+
+// ===== Player modal =====
+function openPlayer(playerId){
+const p = data.players[playerId];
+if(!p) return;
+
+const batting = p.batting || {};
+const pitching = p.pitching || {};
+
+el("playerProfile").innerHTML = `
+<h2>${p.name} <span class="badge">#${p.number} · ${p.pos}</span></h2>
+<p class="muted">Equipo: <strong>${playerTeamName(p.id)}</strong> · B/T: ${p.bats}/${p.throws}</p>
+
+<div class="two-col" style="grid-template-columns:1fr 1fr; gap:12px;">
+<div class="panel">
+<h3>Ofensiva</h3>
+<table>
+<tbody>
+<tr><th>AVG</th><td>${fmt3(batting.AVG)}</td></tr>
+<tr><th>OBP</th><td>${fmt3(batting.OBP)}</td></tr>
+<tr><th>SLG</th><td>${fmt3(batting.SLG)}</td></tr>
+<tr><th>HR</th><td>${batting.HR ?? 0}</td></tr>
+<tr><th>RBI</th><td>${batting.RBI ?? 0}</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="panel">
+<h3>Pitcheo</h3>
+<table>
+<tbody>
+<tr><th>IP</th><td>${pitching.IP ?? 0}</td></tr>
+<tr><th>ERA</th><td>${pitching.ERA ?? 0}</td></tr>
+<tr><th>SO</th><td>${pitching.SO ?? 0}</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+`;
+
+el("playerModal").classList.remove("hidden");
+}
+function closeModal(e){
+el("playerModal").classList.add("hidden");
+}
+function fmt3(v){ return (typeof v==="number") ? v.toFixed(3) : "—"; }
+
+// ====== Name helpers ======
+function catName(catId){
+const c = data.categories.find(c=>c.id===catId);
+return c ? c.name : "—";
+}
+function teamName(teamId){
+const t = data.teams[teamId];
+return t ? t.name : "—";
+}
+function playerTeamName(playerId){
+const team = Object.values(data.teams).find(t=>t.roster.includes(playerId));
+return team ? `${team.logo} ${team.name}` : "—";
+}
+
+// ===== init =====
+document.addEventListener("DOMContentLoaded", ()=>{
+document.getElementById("year").textContent = new Date().getFullYear();
+setLinks();
+renderHome();
+renderCategories();
+renderTeamsList();
+renderFilters();
+renderSchedule();
+computeLeaders();
+renderGallery();
+});
